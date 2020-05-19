@@ -1,5 +1,8 @@
 package it.polito.tdp.crimes.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 public class TestModel {
@@ -16,7 +19,7 @@ public class TestModel {
 		for(DefaultWeightedEdge e : m.getGrafo().edgeSet())
 			System.out.println(m.getGrafo().getEdgeWeight(e));
 		
-		System.out.println(m.cercaCammino("burglary-residence-by-force", "burglary-residence-no-force"));
+		System.out.println(m.cercaCammino("burglary-residence-no-force", "burglary-residence-by-force"));
 	}
 
 }

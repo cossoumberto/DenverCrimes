@@ -75,10 +75,18 @@ public class Model {
 	private void cerca(List<String> parziale, String end, int i) {
 		if(parziale.get(parziale.size()-1).equals(end) && parziale.size()>cammino.size()) {
 			cammino = new ArrayList<>(parziale);
-			//System.out.println(cammino);
+			//System.out.println(cammino + "  " + cammino.size());
 			return;
 		}
-		else {
+		
+		//CORREZIONE MA NON TROVA IL CAMMINO MASSIMO!!
+		/*if (parziale.get(parziale.size()-1).equals(end)) {
+			if(parziale.size()>cammino.size()) {
+				cammino = new ArrayList<>(parziale);
+				System.out.println(cammino + "  " + cammino.size());
+			}
+			return;	
+		} */else {
 			for(String s : Graphs.neighborListOf(grafo, parziale.get(parziale.size()-1)))
 				if(!parziale.contains(s)) {
 					parziale.add(s);

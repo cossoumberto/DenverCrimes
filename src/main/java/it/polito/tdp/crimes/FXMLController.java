@@ -47,12 +47,24 @@ public class FXMLController {
 
     @FXML
     void doCalcolaPercorso(ActionEvent event) {
-
+    	if(boxArco.getItems().size()==0)
+    		txtResult.setText("ANALIZZA PRIMA I QUARTIERI");
+    	else if(boxArco.getValue()==null)
+    		txtResult.setText("SELEZIONA UN ARCO");
+    	else {
+    		String source = model.getGrafo().getEdgeSource(boxArco.getValue());
+    		String end = model.getGrafo().getEdgeTarget(boxArco.getValue());
+    		txtResult.setText("CAMMINO MASSIMO TRA I 2 VERTICI:\n");
+    		for(String s : model.cercaCammino(source, end))
+    			txtResult.appendText(s + "\n");
+    		boxArco.getItems().clear();
+    	}
     }
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
     	txtResult.clear();
+    	boxArco.getItems().clear();
     	String cat = boxCategoria.getValue();
     	Integer mese = boxMese.getValue();
     	if(mese!=null && cat!=null) {
@@ -65,7 +77,6 @@ public class FXMLController {
     	}
     	else 
     		txtResult.setText("SELEZIONE CATEGORIA E MESE");
-    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
